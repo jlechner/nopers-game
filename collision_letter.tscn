@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://laucv4452xqi"]
+
+[ext_resource type="Script" path="res://collision_letter.gd" id="1_mf02j"]
+[ext_resource type="Texture2D" uid="uid://btxuuki1axdwr" path="res://icon.svg" id="1_xx3yl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cj2p2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_amus2"]
+
+[node name="CollisionLetter" type="CollisionShape2D"]
+shape = SubResource("RectangleShape2D_cj2p2")
+script = ExtResource("1_mf02j")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("1_xx3yl")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -18.0
+offset_top = 10.0
+offset_right = 22.0
+offset_bottom = 33.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LeftBound" type="Marker2D" parent="."]
+position = Vector2(-10, 0)
+
+[node name="RightBound" type="Marker2D" parent="."]
+position = Vector2(10, 0)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_amus2")
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

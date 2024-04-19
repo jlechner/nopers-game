@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://bar3mmiyb1cl0"]
+
+[ext_resource type="PackedScene" uid="uid://laucv4452xqi" path="res://collision_letter.tscn" id="1_p7hpy"]
+
+[node name="Barrier" type="StaticBody2D"]
+
+[node name="CollisionLetter" parent="." instance=ExtResource("1_p7hpy")]
+letter_character = "B"
+
+[node name="CollisionLetter2" parent="." instance=ExtResource("1_p7hpy")]
+position = Vector2(28, 1)
+letter_character = "A"
+
+[node name="CollisionLetter3" parent="." instance=ExtResource("1_p7hpy")]
+position = Vector2(52, 0)
+letter_character = "R"
+
+[node name="CollisionLetter4" parent="." instance=ExtResource("1_p7hpy")]
+position = Vector2(76, 0)
+letter_character = "R"

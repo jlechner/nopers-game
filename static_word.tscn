@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bb1sq135rrpik"]
+
+[ext_resource type="Script" path="res://static_word.gd" id="1_sx3m1"]
+[ext_resource type="PackedScene" uid="uid://laucv4452xqi" path="res://collision_letter.tscn" id="2_1cwbi"]
+
+[node name="StaticWord" type="StaticBody2D"]
+script = ExtResource("1_sx3m1")
+letter_scene = ExtResource("2_1cwbi")

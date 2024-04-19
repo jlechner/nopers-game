@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b72w5t8ngvkgj"]
+
+[ext_resource type="Script" path="res://magazine.gd" id="1_27svq"]
+
+[node name="Magazine" type="Label"]
+offset_left = -1.0
+offset_top = 30.0
+offset_bottom = 53.0
+script = ExtResource("1_27svq")

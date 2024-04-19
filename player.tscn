@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://cojb5sqar6yhk"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_5835w"]
+[ext_resource type="PackedScene" uid="uid://laucv4452xqi" path="res://collision_letter.tscn" id="2_f47qt"]
+
+[node name="Player" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_5835w")
+
+[node name="P" parent="." instance=ExtResource("2_f47qt")]
+letter_character = "P"
+
+[node name="L" parent="." instance=ExtResource("2_f47qt")]
+position = Vector2(21, 0)
+letter_character = "L"
+
+[node name="A" parent="." instance=ExtResource("2_f47qt")]
+position = Vector2(42, 0)
+letter_character = "A"
+
+[node name="Y" parent="." instance=ExtResource("2_f47qt")]
+position = Vector2(63, 0)
+letter_character = "Y"
+
+[node name="E" parent="." instance=ExtResource("2_f47qt")]
+position = Vector2(84, 0)
+letter_character = "E"
+
+[node name="R" parent="." instance=ExtResource("2_f47qt")]
+position = Vector2(105, 0)
+letter_character = "R"
