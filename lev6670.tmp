@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://ckiv3eguytxam"]
+[gd_scene load_steps=8 format=3 uid="uid://ckiv3eguytxam"]
 
 [ext_resource type="Script" path="res://level.gd" id="1_hij2v"]
 [ext_resource type="PackedScene" uid="uid://bopwe308ivlmg" path="res://tile_map.tscn" id="1_r6s5c"]
+[ext_resource type="PackedScene" uid="uid://b33j7hcvhbtue" path="res://bomb.tscn" id="2_1wrmc"]
 [ext_resource type="PackedScene" uid="uid://cojb5sqar6yhk" path="res://player.tscn" id="2_g14a5"]
 [ext_resource type="PackedScene" uid="uid://brlkb0mmil4c1" path="res://mob.tscn" id="5_1mcmp"]
 [ext_resource type="PackedScene" uid="uid://bb1sq135rrpik" path="res://static_word.tscn" id="5_rhtvh"]
@@ -9,6 +10,7 @@
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_hij2v")
+bomb_scene = ExtResource("2_1wrmc")
 
 [node name="TileMap" parent="." instance=ExtResource("1_r6s5c")]
 position = Vector2(0, 2)
@@ -36,17 +38,11 @@ position = Vector2(184, 253)
 scale = Vector2(1.5, 1.5)
 
 [node name="WeaponBuilder" parent="." instance=ExtResource("7_5sir7")]
-offset_left = 45.0
-offset_top = 21.0
-offset_right = 85.0
-offset_bottom = 44.0
+offset_left = 491.0
+offset_top = 25.0
+offset_right = 531.0
+offset_bottom = 48.0
 
 [node name="StaticWord2" parent="." instance=ExtResource("5_rhtvh")]
 position = Vector2(338, 333)
-scale = Vector2(2, 2)
-text = "HASTE"
-
-[node name="StaticWord3" parent="." instance=ExtResource("5_rhtvh")]
-position = Vector2(699, 316)
-scale = Vector2(2, 2)
-text = "SHELL"
+text = "camba"

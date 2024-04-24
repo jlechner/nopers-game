@@ -1,7 +1,5 @@
 extends Node2D
 
-@export var bomb_scene : PackedScene
-
 #var weapon_mapping = {
 	#'BOMB': bomb_scene
 #}
@@ -14,16 +12,19 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+		#_on_magazine_weapon_loaded(Global.loaded_letters)
+		#Global.loaded_letters = ""
 
-func _on_magazine_weapon_loaded(weapon : String):
-	var weapon_scene : PackedScene
-	match weapon:
-		"BOMB":
-			weapon_scene = bomb_scene
-		_:
-			print("TYPO")
-			return
-
-	var weapon_instance = weapon_scene.instantiate()
-	add_child(weapon_instance)
-	Global.weapon_loaded = true
+#
+#func _on_magazine_weapon_loaded(weapon : String):
+	#var weapon_scene : PackedScene
+	#match weapon:
+		#"BOMB":
+			#weapon_scene = bomb_scene
+		#_:
+			#print("TYPO")
+			#return
+#
+	#var weapon_instance = weapon_scene.instantiate()
+	#add_child(weapon_instance)
+	#Global.weapon_loaded = true

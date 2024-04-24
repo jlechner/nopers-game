@@ -1,31 +1,63 @@
-[gd_scene load_steps=3 format=3 uid="uid://cojb5sqar6yhk"]
+[gd_scene load_steps=6 format=3 uid="uid://cojb5sqar6yhk"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_5835w"]
 [ext_resource type="PackedScene" uid="uid://laucv4452xqi" path="res://collision_letter.tscn" id="2_f47qt"]
+[ext_resource type="PackedScene" uid="uid://b33j7hcvhbtue" path="res://bomb.tscn" id="2_rpybq"]
+[ext_resource type="PackedScene" uid="uid://dn71v8mcae6w4" path="res://shell.tscn" id="3_bvt2w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ahywn"]
 
 [node name="Player" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_5835w")
+bomb_scene = ExtResource("2_rpybq")
+shell_scene = ExtResource("3_bvt2w")
 
 [node name="P" parent="." instance=ExtResource("2_f47qt")]
+position = Vector2(-10, -21)
+letter_character = "P"
+
+[node name="P2" parent="." instance=ExtResource("2_f47qt")]
+position = Vector2(-31, 0)
+letter_character = "P"
+
+[node name="P3" parent="." instance=ExtResource("2_f47qt")]
+position = Vector2(31, 0)
 letter_character = "P"
 
 [node name="L" parent="." instance=ExtResource("2_f47qt")]
-position = Vector2(21, 0)
+position = Vector2(11, -21)
 letter_character = "L"
 
 [node name="A" parent="." instance=ExtResource("2_f47qt")]
-position = Vector2(42, 0)
+position = Vector2(-10, 0)
 letter_character = "A"
 
 [node name="Y" parent="." instance=ExtResource("2_f47qt")]
-position = Vector2(63, 0)
+position = Vector2(11, 0)
 letter_character = "Y"
 
 [node name="E" parent="." instance=ExtResource("2_f47qt")]
-position = Vector2(84, 0)
+position = Vector2(-10, 21)
 letter_character = "E"
 
 [node name="R" parent="." instance=ExtResource("2_f47qt")]
-position = Vector2(105, 0)
+position = Vector2(11, 21)
 letter_character = "R"
+
+[node name="HasteTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="FullAutoTimer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
+
+[node name="CollisionChecker" type="Area2D" parent="."]
+scale = Vector2(0.2, 0.2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionChecker"]
+shape = SubResource("CircleShape2D_ahywn")
+
+[connection signal="timeout" from="HasteTimer" to="." method="_on_haste_timer_timeout"]
+[connection signal="timeout" from="FullAutoTimer" to="." method="_on_full_auto_timer_timeout"]

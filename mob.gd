@@ -16,4 +16,6 @@ func _physics_process(delta):
 	move_and_slide()
 
 func take_damage(dmg_amt : int) -> void:
+	return ##################
+	Global.take_letters(text)
 	queue_free()

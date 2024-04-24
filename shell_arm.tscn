@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b45ckyhmfye7o"]
+
+[ext_resource type="Script" path="res://shell_arm.gd" id="1_81rbj"]
+[ext_resource type="PackedScene" uid="uid://laucv4452xqi" path="res://collision_letter.tscn" id="1_b6qvn"]
+
+[node name="ShellArm" type="Node2D"]
+script = ExtResource("1_81rbj")
+
+[node name="LetterArea" type="Area2D" parent="."]
+position = Vector2(80, 0)
+
+[node name="CollisionLetter" parent="LetterArea" instance=ExtResource("1_b6qvn")]
+letter_character = "S"
+
+[connection signal="body_entered" from="LetterArea" to="." method="_on_area_2d_body_entered"]

@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://dn71v8mcae6w4"]
+
+[ext_resource type="Script" path="res://shell.gd" id="1_4p21k"]
+[ext_resource type="PackedScene" uid="uid://b45ckyhmfye7o" path="res://shell_arm.tscn" id="1_aaj62"]
+
+[node name="Shell" type="Node2D"]
+script = ExtResource("1_4p21k")
+
+[node name="S_ShellArm" parent="." instance=ExtResource("1_aaj62")]
+
+[node name="H_ShellArm" parent="." instance=ExtResource("1_aaj62")]
+rotation = 1.25664
+shell_arm_letter = "H"
+
+[node name="E_ShellArm" parent="." instance=ExtResource("1_aaj62")]
+rotation = 2.51327
+shell_arm_letter = "E"
+
+[node name="L1_ShellArm" parent="." instance=ExtResource("1_aaj62")]
+rotation = 3.76991
+shell_arm_letter = "L"
+
+[node name="L2_ShellArm" parent="." instance=ExtResource("1_aaj62")]
+rotation = 5.02655
+shell_arm_letter = "L"

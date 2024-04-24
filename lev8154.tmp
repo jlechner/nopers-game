@@ -36,17 +36,11 @@ position = Vector2(184, 253)
 scale = Vector2(1.5, 1.5)
 
 [node name="WeaponBuilder" parent="." instance=ExtResource("7_5sir7")]
-offset_left = 45.0
-offset_top = 21.0
-offset_right = 85.0
-offset_bottom = 44.0
+offset_left = 491.0
+offset_top = 25.0
+offset_right = 531.0
+offset_bottom = 48.0
 
 [node name="StaticWord2" parent="." instance=ExtResource("5_rhtvh")]
 position = Vector2(338, 333)
-scale = Vector2(2, 2)
-text = "HASTE"
-
-[node name="StaticWord3" parent="." instance=ExtResource("5_rhtvh")]
-position = Vector2(699, 316)
-scale = Vector2(2, 2)
-text = "SHELL"
+text = "camba"
