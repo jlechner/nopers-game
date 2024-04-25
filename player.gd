@@ -10,23 +10,13 @@ var speed = normal_speed
 @export var haste_speed = 700
 @onready var target = position
 
-var firing_block : bool = false
-
 func _ready():
-	for c in get_children():
-		if c.has_method("disable_click_kill"):
-			c.disable_click_kill()
+	pass
+	#for c in get_children():
+		#if c.has_method("disable_click_kill"):
+			#c.disable_click_kill()
 
 func _process(delta):
-	if Input.is_action_pressed("left_click"):
-		Global.is_firing = true
-		#if not firing_block:
-			#firing_block = true
-			#$FullAutoTimer.start()
-			#emit_signal("fired", get_global_mouse_position())
-	if Input.is_action_just_released("left_click"):
-		Global.is_firing = false
-
 	if Input.is_action_just_pressed("right_click"):
 		make_weapons()
 
@@ -98,20 +88,33 @@ func _physics_process(delta):
 	get_input()
 	move_and_slide()
 	if is_on_wall():
+		var touching_enemy = false
 		var c = get_last_slide_collision()
 		$CollisionChecker.global_position = c.get_position()
 		var areas = $CollisionChecker.get_overlapping_areas()
 		for a in areas:
-			var area_id = a.get_instance_id()
 			var parent_of_area = a.get_parent()
-			if parent_of_area.has_method("take_damage"):
-				parent_of_area.take_damage(0)
-		
+			var grandparent_of_area = parent_of_area.get_parent()
+			if grandparent_of_area.has_method("is_an_enemy"):
+				touching_enemy = true
+				break
+
+		if touching_enemy:
+			print("enemy touchign")
+			for a in areas:
+				var area_id = a.get_instance_id()
+				var parent_of_area = a.get_parent()
+				var grandparent_of_area = parent_of_area.get_parent() # should be the character_word
+				if parent_of_area.has_method("take_damage"):
+					parent_of_area.take_damage(0)
+				if grandparent_of_area.has_method("apply_knockback"):
+					print("do the knockback")
+					grandparent_of_area.apply_knockback()
+
 	Global.player_position = global_position
 
+func _on_letter_killed(s):
+	pass
 
 func _on_haste_timer_timeout():
 	speed = normal_speed
-
-func _on_full_auto_timer_timeout():
-	firing_block = false

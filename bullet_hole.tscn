@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdexr713mf6bu"]
+
+[ext_resource type="Texture2D" uid="uid://btxuuki1axdwr" path="res://icon.svg" id="1_e5b0e"]
+[ext_resource type="Script" path="res://bullet_hole.gd" id="2_audfy"]
+
+[node name="BulletHole" type="Sprite2D"]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_e5b0e")
+script = ExtResource("2_audfy")

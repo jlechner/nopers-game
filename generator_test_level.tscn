@@ -1,0 +1,119 @@
+[gd_scene load_steps=6 format=3 uid="uid://dam1gbtdegbcs"]
+
+[ext_resource type="PackedScene" uid="uid://cbt50pkkgm4u3" path="res://static_letter.tscn" id="1_2tcl3"]
+[ext_resource type="PackedScene" uid="uid://cojb5sqar6yhk" path="res://player.tscn" id="2_td5ob"]
+[ext_resource type="PackedScene" uid="uid://bomjjbb07rx7t" path="res://weapon_builder.tscn" id="3_2djau"]
+[ext_resource type="PackedScene" uid="uid://gdnurpcvjnab" path="res://hit_area.tscn" id="4_btgcw"]
+[ext_resource type="PackedScene" uid="uid://brlkb0mmil4c1" path="res://mob.tscn" id="5_uawei"]
+
+[node name="GeneratorTestLevel" type="Node2D"]
+
+[node name="StaticLetter0" parent="." instance=ExtResource("1_2tcl3")]
+position = Vector2(440, 40)
+letter_character = "d"
+
+[node name="StaticLetter1" parent="." instance=ExtResource("1_2tcl3")]
+position = Vector2(440, 60)
+letter_character = "a"
+
+[node name="StaticLetter2" parent="." instance=ExtResource("1_2tcl3")]
+position = Vector2(440, 80)
+letter_character = "e"
+
+[node name="StaticLetter3" parent="." instance=ExtResource("1_2tcl3")]
+position = Vector2(440, 100)
+letter_character = "d"
+
+[node name="StaticLetter4" parent="." instance=ExtResource("1_2tcl3")]
+position = Vector2(120, 140)
+letter_character = "A"
+
+[node name="StaticLetter5" parent="." instance=ExtResource("1_2tcl3")]
+position = Vector2(140, 140)
+letter_character = "B"
+
+[node name="StaticLetter6" parent="." instance=ExtResource("1_2tcl3")]
+position = Vector2(160, 140)
+letter_character = "C"
+
+[node name="StaticLetter7" parent="." instance=ExtResource("1_2tcl3")]
+position = Vector2(180, 140)
+letter_character = "D"
+
+[node name="StaticLetter8" parent="." instance=ExtResource("1_2tcl3")]
+position = Vector2(440, 140)
+letter_character = "a"
+
+[node name="StaticLetter9" parent="." instance=ExtResource("1_2tcl3")]
+position = Vector2(460, 140)
+letter_character = "s"
+
+[node name="StaticLetter10" parent="." instance=ExtResource("1_2tcl3")]
+position = Vector2(480, 140)
+letter_character = "t"
+
+[node name="StaticLetter11" parent="." instance=ExtResource("1_2tcl3")]
+position = Vector2(500, 140)
+letter_character = "i"
+
+[node name="StaticLetter12" parent="." instance=ExtResource("1_2tcl3")]
+position = Vector2(520, 140)
+letter_character = "l"
+
+[node name="StaticLetter13" parent="." instance=ExtResource("1_2tcl3")]
+position = Vector2(540, 140)
+letter_character = "l"
+
+[node name="StaticLetter14" parent="." instance=ExtResource("1_2tcl3")]
+position = Vector2(560, 140)
+letter_character = "s"
+
+[node name="StaticLetter15" parent="." instance=ExtResource("1_2tcl3")]
+position = Vector2(560, 160)
+letter_character = "m"
+
+[node name="StaticLetter16" parent="." instance=ExtResource("1_2tcl3")]
+position = Vector2(560, 180)
+letter_character = "a"
+
+[node name="StaticLetter17" parent="." instance=ExtResource("1_2tcl3")]
+position = Vector2(440, 200)
+letter_character = "e"
+
+[node name="StaticLetter18" parent="." instance=ExtResource("1_2tcl3")]
+position = Vector2(460, 200)
+letter_character = "c"
+
+[node name="StaticLetter19" parent="." instance=ExtResource("1_2tcl3")]
+position = Vector2(480, 200)
+letter_character = "i"
+
+[node name="StaticLetter20" parent="." instance=ExtResource("1_2tcl3")]
+position = Vector2(500, 200)
+letter_character = "o"
+
+[node name="StaticLetter21" parent="." instance=ExtResource("1_2tcl3")]
+position = Vector2(520, 200)
+letter_character = "v"
+
+[node name="StaticLetter22" parent="." instance=ExtResource("1_2tcl3")]
+position = Vector2(540, 200)
+letter_character = "l"
+
+[node name="StaticLetter23" parent="." instance=ExtResource("1_2tcl3")]
+position = Vector2(560, 200)
+letter_character = "l"
+
+[node name="Player" parent="." instance=ExtResource("2_td5ob")]
+position = Vector2(311, 353)
+
+[node name="WeaponBuilder" parent="." instance=ExtResource("3_2djau")]
+offset_left = 22.0
+offset_top = 4.0
+offset_right = 62.0
+offset_bottom = 27.0
+
+[node name="HitArea" parent="." instance=ExtResource("4_btgcw")]
+
+[node name="Mob" parent="." instance=ExtResource("5_uawei")]
+position = Vector2(630, 48)

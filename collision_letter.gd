@@ -24,6 +24,7 @@ func take_damage(dmg_amt : int) -> void:
 func _ready():
 	width = $RightBound.position.x - $LeftBound.position.x
 	killed.connect(Global._on_letter_killed)
+	killed.connect(get_parent()._on_letter_killed)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -39,13 +40,15 @@ func _process(_delta):
 			#kill_letter()
 
 func kill_letter():
-	emit_signal("killed", letter_character)
-	queue_free()
-
-
-func _on_area_2d_mouse_entered():
 	if can_click_kill and not letter_killed:
-		if Global.is_firing:
-			# TODO: should have different behaviors here being set based on parent word
-			letter_killed = true
-			kill_letter()
+		letter_killed = true
+		emit_signal("killed", letter_character)
+		queue_free()
+
+
+#func _on_area_2d_mouse_entered():
+	#if can_click_kill and not letter_killed:
+		#if Global.is_firing:
+			## TODO: should have different behaviors here being set based on parent word
+			#letter_killed = true
+			#kill_letter()
