@@ -10,6 +10,10 @@ var weapon_loaded : bool = false
 
 var is_firing : bool = false
 
+#### MASKs
+const TOUCH_MASK : int = 10
+const SMASH_MASK : int = 11
+
 func _on_letter_killed(s: String):
 	s = s.to_upper()
 	ammo_dict[s] += 1
@@ -33,6 +37,8 @@ func update_loaded_letters():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	update_loaded_letters()
+	randomize()
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

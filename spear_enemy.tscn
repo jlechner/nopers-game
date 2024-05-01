@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://n1fw4pmno02g"]
+
+[ext_resource type="Script" path="res://SpearEnemy.gd" id="1_3bnq1"]
+[ext_resource type="PackedScene" uid="uid://laucv4452xqi" path="res://collision_letter.tscn" id="2_ksl62"]
+
+[node name="SpearEnemy" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_3bnq1")
+
+[node name="S" parent="." instance=ExtResource("2_ksl62")]
+position = Vector2(-42, 0)
+letter_character = "S"
+
+[node name="P" parent="." instance=ExtResource("2_ksl62")]
+position = Vector2(-21, 0)
+letter_character = "P"
+
+[node name="E" parent="." instance=ExtResource("2_ksl62")]
+letter_character = "E"
+
+[node name="A" parent="." instance=ExtResource("2_ksl62")]
+position = Vector2(21, 0)
+letter_character = "A"
+
+[node name="R" parent="." instance=ExtResource("2_ksl62")]
+position = Vector2(42, 0)
+letter_character = "R"
+
+[node name="WindUpTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="StabTimer" type="Timer" parent="."]
+wait_time = 0.06
+one_shot = true
+
+[connection signal="timeout" from="WindUpTimer" to="." method="_on_wind_up_timer_timeout"]
+[connection signal="timeout" from="StabTimer" to="." method="_on_stab_timer_timeout"]

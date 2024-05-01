@@ -26,3 +26,6 @@ func _on_area_2d_body_entered(body):
 				b.take_damage(damage_amount)
 	if valid_hit:
 		queue_free()
+		
+func _on_letter_killed(s):
+	pass

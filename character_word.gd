@@ -20,6 +20,7 @@ func init(s):
 		var letter = letter_scene.instantiate()
 		letter.set_letter(l)
 		add_child(letter)
+		letter.killed.connect(_on_letter_killed)
 		total_letters += 1
 	orient()
 
@@ -44,14 +45,3 @@ func _on_letter_killed(s):
 	print(total_letters)
 	if total_letters <= 0:
 		queue_free()
-
-#func _physics_process(delta):
-	### Get the input direction and handle the movement/deceleration.
-	### As good practice, you should replace UI actions with custom gameplay actions.
-	##var direction = Input.get_axis("ui_left", "ui_right")
-	##if direction:
-		##velocity.x = direction * SPEED
-	##else:
-		##velocity.x = move_toward(velocity.x, 0, SPEED)
-#
-	#move_and_slide()

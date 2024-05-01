@@ -2,10 +2,9 @@
 
 [ext_resource type="Script" path="res://collision_letter.gd" id="1_mf02j"]
 [ext_resource type="Texture2D" uid="uid://btxuuki1axdwr" path="res://icon.svg" id="1_xx3yl"]
+[ext_resource type="PackedScene" uid="uid://c4wx57db3in8p" path="res://letter_area.tscn" id="3_daxu4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cj2p2"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_amus2"]
 
 [node name="CollisionLetter" type="CollisionShape2D"]
 shape = SubResource("RectangleShape2D_cj2p2")
@@ -31,7 +30,9 @@ position = Vector2(-10, 0)
 [node name="RightBound" type="Marker2D" parent="."]
 position = Vector2(10, 0)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="LetterArea" parent="." instance=ExtResource("3_daxu4")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_amus2")
+[connection signal="exploded" from="LetterArea" to="." method="_on_letter_area_exploded"]
+[connection signal="shot" from="LetterArea" to="." method="_on_letter_area_shot"]
+[connection signal="smashed" from="LetterArea" to="." method="_on_letter_area_smashed"]
+[connection signal="touched" from="LetterArea" to="." method="_on_letter_area_touched"]

@@ -1,10 +1,14 @@
 extends CollisionShape2D
 
 signal killed(s: String)
+signal exploded(epicenter_posn : Vector2)
+signal touched(s : String)
+signal smashed(kb : bool)
 
 @export var letter_character : String = ""
 var width: float
-var can_click_kill = true
+var can_click_kill : bool = true
+var preserve : bool = false
 
 var letter_killed : bool = false
 
@@ -17,6 +21,15 @@ func get_width() -> float:
 func disable_click_kill():
 	can_click_kill = false
 
+func make_preservable():
+	preserve = true
+
+func make_touchable():
+	$LetterArea.set_collision_layer_value(Global.TOUCH_MASK, true)
+
+func make_smashable():
+	$LetterArea.set_collision_layer_value(Global.SMASH_MASK, true)
+	
 func take_damage(dmg_amt : int) -> void:
 	kill_letter()
 
@@ -24,20 +37,11 @@ func take_damage(dmg_amt : int) -> void:
 func _ready():
 	width = $RightBound.position.x - $LeftBound.position.x
 	killed.connect(Global._on_letter_killed)
-	killed.connect(get_parent()._on_letter_killed)
+	#killed.connect(get_parent()._on_letter_killed)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	$Label.text = letter_character
-#
-#func _on_area_2d_input_event(viewport, event, shape_idx):
-	#if Global.weapon_loaded:
-		#return
-#
-	#if event.is_pressed():
-		#if can_click_kill:
-			## TODO: should have different behaviors here being set based on parent word
-			#kill_letter()
 
 func kill_letter():
 	if can_click_kill and not letter_killed:
@@ -45,10 +49,28 @@ func kill_letter():
 		emit_signal("killed", letter_character)
 		queue_free()
 
+func _on_letter_area_shot():
+	kill_letter()
 
-#func _on_area_2d_mouse_entered():
-	#if can_click_kill and not letter_killed:
-		#if Global.is_firing:
-			## TODO: should have different behaviors here being set based on parent word
-			#letter_killed = true
-			#kill_letter()
+func _on_letter_area_exploded(epicenter):
+	emit_signal("exploded",epicenter)
+	kill_letter()
+
+func _on_letter_area_touched(killed : bool):
+	emit_signal("touched", letter_character)
+	if killed and not preserve:
+		kill_letter()
+		
+	if preserve:
+		disable_letter()
+
+func disable_letter():
+	set_deferred("disabled", true)
+	
+func enable_letter():
+	set_deferred("disabled", false)
+
+
+func _on_letter_area_smashed(knocked_back):
+	emit_signal("smashed", knocked_back)
+	kill_letter()

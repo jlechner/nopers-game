@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4wx57db3in8p"]
+
+[ext_resource type="Script" path="res://letter_area.gd" id="1_xtsv6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_amus2"]
+
+[node name="LetterArea" type="Area2D"]
+collision_layer = 4353
+script = ExtResource("1_xtsv6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_amus2")

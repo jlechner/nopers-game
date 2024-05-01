@@ -1,10 +1,19 @@
 extends CharacterWord
 
 var base_speed = 25.0
-var knockback_speed = 800.0
+@export var knockback_speed = 2600.0
 var mob_speed = base_speed
 var knocked_back : bool = false
 var target : Vector2
+
+func _ready():
+	super()
+	var child_letters = get_child_letters()
+	for cl in child_letters:
+		cl.make_touchable()
+		cl.make_smashable()
+		cl.touched.connect(_on_touched)
+		cl.smashed.connect(_on_smashed)
 
 func _physics_process(delta):
 	if not knocked_back:
@@ -26,6 +35,12 @@ func take_damage(dmg_amt : int) -> void:
 
 func is_an_enemy():
 	return true
+
+func _on_touched(s):
+	apply_knockback()
+
+func _on_smashed(knocked_back : bool):
+	apply_knockback()
 
 func apply_knockback():
 	var kb_length = 1000.0

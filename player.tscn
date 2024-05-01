@@ -4,46 +4,19 @@
 [ext_resource type="PackedScene" uid="uid://laucv4452xqi" path="res://collision_letter.tscn" id="2_f47qt"]
 [ext_resource type="PackedScene" uid="uid://b33j7hcvhbtue" path="res://bomb.tscn" id="2_rpybq"]
 [ext_resource type="PackedScene" uid="uid://dn71v8mcae6w4" path="res://shell.tscn" id="3_bvt2w"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_ahywn"]
+[ext_resource type="PackedScene" uid="uid://d3ytuaoflpa1j" path="res://collision_checker.tscn" id="5_ybn1l"]
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_5835w")
 bomb_scene = ExtResource("2_rpybq")
 shell_scene = ExtResource("3_bvt2w")
 
-[node name="P" parent="." instance=ExtResource("2_f47qt")]
-position = Vector2(-10, -21)
-letter_character = "P"
-
-[node name="P2" parent="." instance=ExtResource("2_f47qt")]
-position = Vector2(-31, 0)
-letter_character = "P"
-
-[node name="P3" parent="." instance=ExtResource("2_f47qt")]
-position = Vector2(31, 0)
-letter_character = "P"
-
-[node name="L" parent="." instance=ExtResource("2_f47qt")]
-position = Vector2(11, -21)
-letter_character = "L"
-
-[node name="A" parent="." instance=ExtResource("2_f47qt")]
-position = Vector2(-10, 0)
-letter_character = "A"
-
-[node name="Y" parent="." instance=ExtResource("2_f47qt")]
-position = Vector2(11, 0)
-letter_character = "Y"
-
-[node name="E" parent="." instance=ExtResource("2_f47qt")]
-position = Vector2(-10, 21)
-letter_character = "E"
-
-[node name="R" parent="." instance=ExtResource("2_f47qt")]
-position = Vector2(11, 21)
-letter_character = "R"
+[node name="J" parent="." instance=ExtResource("2_f47qt")]
+position = Vector2(-16, -16)
+letter_character = "J"
 
 [node name="HasteTimer" type="Timer" parent="."]
 wait_time = 3.0
@@ -53,11 +26,27 @@ one_shot = true
 wait_time = 0.05
 one_shot = true
 
-[node name="CollisionChecker" type="Area2D" parent="."]
-scale = Vector2(0.2, 0.2)
+[node name="DashTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionChecker"]
-shape = SubResource("CircleShape2D_ahywn")
+[node name="CollisionChecker" parent="." instance=ExtResource("5_ybn1l")]
+
+[node name="CollisionLetter" parent="." instance=ExtResource("2_f47qt")]
+position = Vector2(-16, 16)
+letter_character = "S"
+
+[node name="CollisionLetter2" parent="." instance=ExtResource("2_f47qt")]
+position = Vector2(16, 16)
+letter_character = "E"
+
+[node name="CollisionLetter3" parent="." instance=ExtResource("2_f47qt")]
+position = Vector2(16, -16)
+letter_character = "O"
+
+[node name="DashCollisionChecker" parent="." instance=ExtResource("5_ybn1l")]
+collision_mask = 1024
 
 [connection signal="timeout" from="HasteTimer" to="." method="_on_haste_timer_timeout"]
 [connection signal="timeout" from="FullAutoTimer" to="." method="_on_full_auto_timer_timeout"]
+[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
