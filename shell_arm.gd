@@ -14,18 +14,27 @@ func _ready():
 func _process(delta):
 	pass
 
-
-func _on_area_2d_body_entered(body):
-	var bodies = $LetterArea.get_overlapping_bodies()
-	for b in bodies:
-		var body_id = b.get_instance_id()
-		if body_id not in damaged:
-			damaged.append(body_id)
-			if b.has_method("take_damage"):
-				valid_hit = true
-				b.take_damage(damage_amount)
-	if valid_hit:
-		queue_free()
+#
+#func _on_area_2d_body_entered(body):
+	#pass
+	#var bodies = $LetterArea.get_overlapping_bodies()
+	#for b in bodies:
+		#var body_id = b.get_instance_id()
+		#
+		#if body_id not in damaged:
+			#damaged.append(body_id)
+			#if b.has_method("take_damage"):
+				#valid_hit = true
+				#b.take_damage(damage_amount)
+	#if valid_hit:
+		#queue_free()
 		
 func _on_letter_killed(s):
 	pass
+
+
+func _on_letter_area_area_entered(area):
+	var areas = $LetterArea.get_overlapping_areas()
+	for a in areas:
+		a.touch(true)
+	queue_free()

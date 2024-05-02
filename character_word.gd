@@ -1,6 +1,8 @@
 class_name CharacterWord
 extends CharacterBody2D
 
+signal killed_off
+
 var SPEED = 50.0
 @export var text : String
 @export var letter_scene: PackedScene
@@ -11,6 +13,7 @@ func take_damage(dmg_amt : int) -> void:
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	killed_off.connect(Global._on_enemy_killed)
 	if text:
 		init(text)
 	velocity = SPEED*Vector2.DOWN
@@ -44,4 +47,5 @@ func _on_letter_killed(s):
 	total_letters -= 1
 	print(total_letters)
 	if total_letters <= 0:
+		emit_signal("killed_off")
 		queue_free()

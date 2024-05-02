@@ -14,6 +14,8 @@ var speed = normal_speed
 var dashing : bool = false
 
 var lost = {'J':0,'O':0,'S':0,'E':0}
+var base_health = 4
+var health = base_health
 
 func _ready():
 	for c in get_children():
@@ -22,9 +24,10 @@ func _ready():
 			c.make_preservable()
 			c.killed.connect(_on_letter_killed)
 			c.touched.connect(_on_touched)
-			#c.disable_click_kill()
+			c.disable_click_kill()
 
 func _process(delta):
+	Global.player_health = health
 	if Input.is_action_just_pressed("right_click"):
 		make_weapons()
 	if Input.is_action_just_pressed("space_key"):
@@ -100,6 +103,7 @@ func make_weapons():
 				var child_ls = get_child_letters()
 				for cl in child_ls:
 					if healed_letters[cl.letter_character] == 1:
+						health += 1
 						cl.enable_letter()
 
 func make_bomb():
@@ -135,23 +139,7 @@ func _physics_process(delta):
 			if areas.size() > 1:
 				for a in areas:
 					a.touch(true)
-			#var parent_of_area = a.get_parent()
-			#var grandparent_of_area = parent_of_area.get_parent()
-			#if grandparent_of_area.has_method("is_an_enemy"):
-				#touching_enemy = true
-				#break
 
-		#if touching_enemy:
-			#print("enemy touchign")
-			#for a in areas:
-				#var area_id = a.get_instance_id()
-				#var parent_of_area = a.get_parent()
-				#var grandparent_of_area = parent_of_area.get_parent() # should be the character_word
-				#if parent_of_area.has_method("take_damage"):
-					#parent_of_area.take_damage(0)
-				#if grandparent_of_area.has_method("apply_knockback"):
-					#print("do the knockback")
-					#grandparent_of_area.apply_knockback()
 
 	Global.player_position = global_position
 
@@ -162,8 +150,12 @@ func _on_haste_timer_timeout():
 	speed = normal_speed
 
 func _on_touched(s):
-	lost[s] = 1
+	lose_letter(s)
 
+func lose_letter(s):
+	lost[s] = 1
+	health -= 1
+	
 func _on_dash_timer_timeout():
 	dashing = false
 	

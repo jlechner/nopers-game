@@ -8,8 +8,10 @@ script = ExtResource("1_81rbj")
 
 [node name="LetterArea" type="Area2D" parent="."]
 position = Vector2(80, 0)
+collision_layer = 0
+collision_mask = 512
 
 [node name="CollisionLetter" parent="LetterArea" instance=ExtResource("1_b6qvn")]
 letter_character = "S"
 
-[connection signal="body_entered" from="LetterArea" to="." method="_on_area_2d_body_entered"]
+[connection signal="area_entered" from="LetterArea" to="." method="_on_letter_area_area_entered"]

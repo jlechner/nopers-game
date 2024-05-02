@@ -1,6 +1,6 @@
 extends CharacterWord
 
-var base_speed = 25.0
+@export var base_speed = 90.0
 @export var knockback_speed = 2600.0
 var mob_speed = base_speed
 var knocked_back : bool = false

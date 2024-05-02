@@ -50,11 +50,16 @@ func kill_letter():
 		queue_free()
 
 func _on_letter_area_shot():
-	kill_letter()
+	if can_click_kill:
+		kill_letter()
 
 func _on_letter_area_exploded(epicenter):
 	emit_signal("exploded",epicenter)
-	kill_letter()
+	
+	if not preserve:
+		kill_letter()
+	else:
+		disable_letter()
 
 func _on_letter_area_touched(killed : bool):
 	emit_signal("touched", letter_character)
@@ -65,11 +70,12 @@ func _on_letter_area_touched(killed : bool):
 		disable_letter()
 
 func disable_letter():
+	hide()
 	set_deferred("disabled", true)
 	
 func enable_letter():
+	show()
 	set_deferred("disabled", false)
-
 
 func _on_letter_area_smashed(knocked_back):
 	emit_signal("smashed", knocked_back)

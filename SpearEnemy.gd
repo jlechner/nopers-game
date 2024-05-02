@@ -1,7 +1,7 @@
 extends CharacterWord
 
 var spear_windup_speed = 15.0
-var stab_speed = 2000.0
+var stab_speed = 1500.0
 var stabbing : bool = false
 
 func aim() -> Vector2:

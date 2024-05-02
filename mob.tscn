@@ -4,11 +4,12 @@
 [ext_resource type="PackedScene" uid="uid://laucv4452xqi" path="res://collision_letter.tscn" id="2_c8t3o"]
 
 [node name="Mob" type="CharacterBody2D"]
-scale = Vector2(2, 2)
+scale = Vector2(1.5, 1.5)
 collision_layer = 4
 collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_ywymg")
+base_speed = 100.0
 text = "MOB"
 letter_scene = ExtResource("2_c8t3o")
 

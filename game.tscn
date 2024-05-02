@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://nugyvk68am56"]
+
+[ext_resource type="Script" path="res://game.gd" id="1_0cnlu"]
+[ext_resource type="PackedScene" uid="uid://dam1gbtdegbcs" path="res://generator_test_level.tscn" id="2_7r460"]
+[ext_resource type="PackedScene" uid="uid://dfjs3mfg0mcu7" path="res://main_menu.tscn" id="3_mgwhr"]
+
+[node name="Game" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_0cnlu")
+
+[node name="GeneratorTestLevel" parent="." instance=ExtResource("2_7r460")]
+
+[node name="MainMenu" parent="." instance=ExtResource("3_mgwhr")]
+process_mode = 2
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 544.0
+offset_top = 306.0
+offset_right = 544.0
+offset_bottom = 306.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="StartButton" type="Button" parent="MainMenu"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "START"
+
+[node name="WinMessage" type="Label" parent="MainMenu"]
+visible = false
+layout_mode = 0
+offset_left = -15.0
+offset_top = -33.0
+offset_right = 67.0
+offset_bottom = -10.0
+text = "WINNER!!!!"
+
+[node name="LoseMessage" type="Label" parent="MainMenu"]
+visible = false
+layout_mode = 0
+offset_left = -15.0
+offset_top = -33.0
+offset_right = 67.0
+offset_bottom = -10.0
+text = "LOSER!!!"
+
+[node name="Health" type="Label" parent="."]
+offset_left = 1056.0
+offset_top = 570.0
+offset_right = 1096.0
+offset_bottom = 593.0
+
+[connection signal="button_down" from="MainMenu/StartButton" to="." method="_on_start_button_button_down"]
+[connection signal="pressed" from="MainMenu/StartButton" to="." method="_on_start_button_pressed"]
